@@ -12,9 +12,9 @@ export default function DashboardPage() {
 			<Header />
 			<main className="min-h-screen bg-background">
 				<div
-					className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+					className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
 					<div className="mb-8">
-						<h1 className="text-foreground text-balance">
+						<h1 className="text-foreground font-bold text-balance">
 							Plant Health Dashboard
 						</h1>
 						<p className="mt-3 text-base text-muted-foreground max-w-2xl">

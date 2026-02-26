@@ -301,19 +301,19 @@ export function AIInsights() {
 						</p>
 						<ul className="space-y-2">
 							<li className="flex gap-2 text-sm text-foreground">
-								<span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+								<span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
 								Model achieves 96%+ accuracy on test dataset
 							</li>
 							<li className="flex gap-2 text-sm text-foreground">
-								<span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+								<span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
 								Trained on 54,305 diverse plant images
 							</li>
 							<li className="flex gap-2 text-sm text-foreground">
-								<span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+								<span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
 								Detects 38 different plant diseases and conditions
 							</li>
 							<li className="flex gap-2 text-sm text-foreground">
-								<span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+								<span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
 								Optimized for real-world deployment on edge devices
 							</li>
 						</ul>
@@ -342,15 +342,15 @@ export function AIInsights() {
 						</p>
 						<ul className="space-y-2">
 							<li className="flex gap-2 text-sm text-foreground">
-								<span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+								<span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
 								Fine-tuned on 5 major crop types with high discriminative power
 							</li>
 							<li className="flex gap-2 text-sm text-foreground">
-								<span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+								<span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
 								Each crop has dedicated disease detection sub-models
 							</li>
 							<li className="flex gap-2 text-sm text-foreground">
-								<span className="mt-1.5 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+								<span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
 								Achieves near-perfect plant classification with low false positives
 							</li>
 						</ul>
