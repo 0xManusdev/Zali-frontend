@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/sheet'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 export function Header() {
 	const pathname = usePathname()
@@ -28,8 +29,15 @@ export function Header() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="flex h-14 items-center justify-between">
 					<Link href="/" className="flex items-center gap-2">
-						<Leaf className="h-5 w-5 text-primary" />
-						<span className="text-base font-semibold text-foreground">Zali</span>
+						<Image
+							src="/logo.svg"
+							alt="Zali Logo"
+							quality={100}
+							width={30}
+							height={30}
+							className='w-5 h-5'
+						/>
+						<span className="text-base font-bold text-foreground">Zali</span>
 					</Link>
 
 					{/* Desktop Navigation */}
