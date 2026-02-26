@@ -12,6 +12,7 @@ export interface LLMAnalysis {
   recommendation: string
   water_needed_mm: number
   frequency: string
+  best_watering_time?: string
   notes: string[]
 }
 

@@ -163,7 +163,7 @@ export function mapToAnalysisResult(
 		recommendation: llmAnalysis?.recommendation ?? '',
 		irrigationNeeded: llmAnalysis?.water_needed_mm ?? 0,
 		waterFrequency: llmAnalysis?.frequency ?? '',
-		waterTiming: irrigation.waterTiming,
+		waterTiming: llmAnalysis?.best_watering_time ?? irrigation.waterTiming,
 		soilMoisture: irrigation.soilMoisture,
 		urgency,
 		irrigationNotes: llmAnalysis?.notes ?? [],
