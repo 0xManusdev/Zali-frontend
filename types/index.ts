@@ -12,5 +12,7 @@ export type {
   // Backend API response types
   PlantClassResponse,
   DiseaseResponse,
+  LLMAnalysis,
+  IntegratedAnalysisResponse,
   PredictionItem,
 } from './analysis'

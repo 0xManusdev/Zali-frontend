@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
-import { classifyPlant, predictDisease } from '@/lib/api'
-import { mapToAnalysisResult } from '@/lib/mappers/analysis'
+import { apiService } from '@/lib/api-service'
 import type { AnalysisResult } from '@/types'
 
 interface UseAnalysisOptions {
@@ -20,7 +19,7 @@ interface UseAnalysisReturn {
 
 /**
  * Encapsulates the full plant image analysis flow:
- *  1. Calls /predict_plant_class and /predict_plant_desease in parallel
+ *  1. Calls POST /analyze (single endpoint — plant + disease + Gemini LLM)
  *  2. Maps raw API results into the AnalysisResult UI model
  *  3. Manages loading / error state and exposes a retry function
  *  4. Calls onSuccess(result, preview) when analysis succeeds (e.g. to add to history)
@@ -30,9 +29,7 @@ export function useAnalysis({ onSuccess }: UseAnalysisOptions = {}): UseAnalysis
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 
-	// Store last call args so retry() can replay the same request
 	const lastArgs = useRef<{ file: File; preview: string } | null>(null)
-	// Keep latest onSuccess ref so it's always up-to-date without re-creating run()
 	const onSuccessRef = useRef(onSuccess)
 	onSuccessRef.current = onSuccess
 
@@ -41,12 +38,10 @@ export function useAnalysis({ onSuccess }: UseAnalysisOptions = {}): UseAnalysis
 		setError(null)
 
 		try {
-			// Run both API calls in parallel for speed
-			const [plantPreds, diseasePreds] = await Promise.all([
-				classifyPlant(file),
-				predictDisease(file),
-			])
-			const result = mapToAnalysisResult(plantPreds, diseasePreds)
+			const result = await apiService.analyzeImage({
+				image: preview,   // base64 data URL
+				fileName: file.name,
+			})
 			setAnalysis(result)
 			onSuccessRef.current?.(result, preview)
 		} catch (err) {

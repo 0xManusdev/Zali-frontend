@@ -10,7 +10,7 @@ import { useAnalysis } from '@/hooks/use-analysis'
 import { useHistory } from '@/hooks/use-history'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { AlertCircle, Loader2 } from 'lucide-react'
+import { AlertCircle, Loader2, Sparkles } from 'lucide-react'
 import type { AnalysisResult } from '@/types'
 
 export function DashboardClient() {
@@ -83,7 +83,16 @@ export function DashboardClient() {
 				{/* Analysis Results */}
 				{analysis && !isLoading && (
 					<>
-						<AnalysisCard data={analysis} />
+						{/* Gemini banner */}
+						{analysis.llmAnalysis && (
+							<div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2.5">
+								<Sparkles className="h-4 w-4 text-primary shrink-0" />
+								<p className="text-xs font-medium text-primary">
+									Recommendations powered AI Assistant
+								</p>
+							</div>
+						)}
+						<AnalysisCard data={{ ...analysis, llmAnalysis: analysis.llmAnalysis }} />
 
 						<IrrigationRecommendation
 							data={{

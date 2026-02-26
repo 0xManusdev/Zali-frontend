@@ -1,6 +1,6 @@
 'use client'
 
-import { AlertCircle, CheckCircle2, AlertTriangle, Share2, Download, Copy, Check } from 'lucide-react'
+import { AlertCircle, CheckCircle2, AlertTriangle, Share2, Download, Copy, Check, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -15,7 +15,7 @@ import type { AnalysisResult } from '@/types'
 import { useState } from 'react'
 
 interface AnalysisCardData extends Pick<AnalysisResult,
-	'plantType' | 'healthStatus' | 'disease' | 'confidence' | 'recommendation' | 'diseaseProbs' | 'llmDescription'
+	'plantType' | 'healthStatus' | 'disease' | 'confidence' | 'recommendation' | 'diseaseProbs' | 'llmDescription' | 'llmAnalysis'
 > {
 	plantImage?: string
 }
@@ -196,11 +196,19 @@ export function AnalysisCard({ data }: { data: AnalysisCardData }) {
 					)}
 
 					<div className="rounded-lg border border-border bg-muted/50 p-4">
-						<p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-							AI Analysis
-						</p>
-						<p className="mt-2 text-sm leading-relaxed text-foreground">
-							{data.llmDescription || data.recommendation}
+						<div className="flex items-center gap-2 mb-2">
+							<p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+								AI Analysis
+							</p>
+							{data.llmAnalysis && (
+								<span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+									<Sparkles className="h-2.5 w-2.5" />
+									Gemini
+								</span>
+							)}
+						</div>
+						<p className="text-sm leading-relaxed text-foreground">
+							{data.recommendation}
 						</p>
 					</div>
 				</div>

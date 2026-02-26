@@ -8,6 +8,20 @@ export type PlantClassResponse = Record<string, number>
 /** Raw response from /predict_plant_desease: { "Tomato_Early_blight": 0.87, ... } */
 export type DiseaseResponse = Record<string, number>
 
+export interface LLMAnalysis {
+  recommendation: string
+  water_needed_mm: number
+  frequency: string
+  notes: string[]
+}
+
+/** Complete response from /analyze */
+export interface IntegratedAnalysisResponse {
+  plant_predictions: PlantClassResponse
+  disease_predictions: DiseaseResponse
+  llm_analysis: LLMAnalysis | null
+}
+
 /** A single prediction after parsing + sorting the raw API response */
 export interface PredictionItem {
   name: string
@@ -48,6 +62,7 @@ export interface AnalysisResult {
   plantClassificationProbs?: PlantClassificationProb[]
   diseaseProbs?: DiseaseProb[]
   llmDescription?: string
+  llmAnalysis?: LLMAnalysis
 }
 
 export interface AnalysisRequest {

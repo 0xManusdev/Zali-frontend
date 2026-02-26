@@ -1,4 +1,4 @@
-import type { PredictionItem, AnalysisResult, DiseaseProb, PlantClassificationProb } from '@/types'
+import type { PredictionItem, AnalysisResult, DiseaseProb, PlantClassificationProb, LLMAnalysis } from '@/types'
 
 // ---------------------------------------------------------------------------
 // Label normalisation helpers
@@ -128,7 +128,8 @@ function buildRecommendation(plantName: string, status: HealthStatus, diseaseNam
  */
 export function mapToAnalysisResult(
 	plantPredictions: PredictionItem[],
-	diseasePredictions: PredictionItem[]
+	diseasePredictions: PredictionItem[],
+	llmAnalysis?: LLMAnalysis
 ): AnalysisResult {
 	const topPlant = plantPredictions[0]
 	const topDisease = diseasePredictions[0]
@@ -159,13 +160,14 @@ export function mapToAnalysisResult(
 		healthStatus,
 		disease: isHealthy ? undefined : diseaseLabel,
 		confidence,
-		recommendation: buildRecommendation(plantName, healthStatus, isHealthy ? undefined : diseaseLabel),
-		irrigationNeeded: irrigation.irrigationNeeded,
-		waterFrequency: irrigation.waterFrequency,
+		recommendation: llmAnalysis?.recommendation ?? '',
+		irrigationNeeded: llmAnalysis?.water_needed_mm ?? 0,
+		waterFrequency: llmAnalysis?.frequency ?? '',
 		waterTiming: irrigation.waterTiming,
 		soilMoisture: irrigation.soilMoisture,
 		urgency,
-		irrigationNotes: irrigation.irrigationNotes,
+		irrigationNotes: llmAnalysis?.notes ?? [],
+		llmAnalysis,
 		analysisDetails: {
 			leafColor: isHealthy ? 'Vibrant green, no discoloration' : 'Discoloration or lesions detected',
 			stemCondition: healthStatus === 'healthy' ? 'Strong and upright' : 'Signs of stress observed',
