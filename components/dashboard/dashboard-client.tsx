@@ -85,10 +85,10 @@ export function DashboardClient() {
 					<>
 						{/* Gemini banner */}
 						{analysis.llmAnalysis && (
-							<div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2.5">
+							<div className="flex items-center gap-2 rounded-lg bg-primary/5 px-4 py-2.5">
 								<Sparkles className="h-4 w-4 text-primary shrink-0" />
-								<p className="text-xs font-medium text-primary">
-									Recommendations powered AI Assistant
+								<p className="text-xs font-bold text-primary">
+									Recommendations
 								</p>
 							</div>
 						)}
