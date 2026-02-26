@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { Upload, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -63,21 +64,23 @@ export function ImageUpload({ onImageSelect, isLoading = false }: ImageUploadPro
 				<div
 					onDrop={handleDrop}
 					onDragOver={handleDragOver}
-					className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-border bg-card p-8 transition-colors hover:bg-muted"
+					className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border p-10 text-center transition-colors hover:bg-muted/50"
 				>
-					<Upload className="mb-4 h-12 w-12 text-primary" />
-					<p className="mb-2 text-center font-semibold text-foreground">
-						Drag and drop your plant image here
+					<Upload className="mb-3 h-8 w-8 text-muted-foreground" />
+					<p className="text-sm font-medium text-foreground mb-1">
+						Drop your plant image here
 					</p>
-					<p className="mb-6 text-center text-sm text-muted-foreground">
-						or click to browse from your device
+					<p className="text-xs text-muted-foreground mb-4">
+						PNG, JPG up to 10MB
 					</p>
 					<Button
+						variant="outline"
+						size="sm"
 						onClick={() => fileInputRef.current?.click()}
 						disabled={isLoading}
-						className="bg-primary cursor-pointer hover:bg-primary/90"
+						className="cursor-pointer"
 					>
-						Select Image
+						Browse files
 					</Button>
 					<input
 						ref={fileInputRef}
@@ -91,10 +94,13 @@ export function ImageUpload({ onImageSelect, isLoading = false }: ImageUploadPro
 			) : (
 				<div className="space-y-4">
 					<div className="relative overflow-hidden rounded-lg bg-muted">
-						<img
+						<Image
 							src={preview}
 							alt="Preview"
+							width={800}
+							height={256}
 							className="h-64 w-full object-cover"
+							unoptimized
 						/>
 					</div>
 					<div className="flex items-center justify-between">

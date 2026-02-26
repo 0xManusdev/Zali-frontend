@@ -1,21 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter, Space_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ThemeProvider } from '@/components/layout/theme-provider'
 import './globals.css'
 
 const inter = Inter({ 
   subsets: ["latin"],
   weight: ['300', '400', '500', '600', '700']
 });
-const spaceMono = Space_Mono({ 
-  subsets: ["latin"],
-  weight: ['400', '700']
-});
 
 export const metadata: Metadata = {
   title: 'Zali - AI Crop Monitoring & Intelligent Irrigation',
   description: 'Advanced AI-powered plant disease detection and irrigation recommendations for farmers',
-  generator: 'v0.app',
   applicationName: 'Zali',
   icons: {
     icon: [
@@ -44,7 +40,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} font-sans antialiased`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Skip link for keyboard navigation */}
+          <a 
+            href="#main-content" 
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
+          >
+            Skip to main content
+          </a>
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
