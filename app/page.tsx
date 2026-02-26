@@ -2,7 +2,7 @@ import { Header } from '@/components/layout/header'
 import { DashboardClient } from '@/components/dashboard/dashboard-client'
 
 export const metadata = {
-	title: 'Dashboard - Zali',
+	title: 'Zali',
 	description: 'Upload and analyze plant images with AI-powered crop monitoring',
 }
 
